@@ -169,10 +169,68 @@
     color: var(--text-primary);
 }
 
+/* CARROSSEL - MOBILE (escondido no desktop) */
+.carouselContainer {
+    display: none;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.carouselBtn {
+    background: var(--accent-primary);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+.carouselBtn:hover {
+    background: var(--accent-dark);
+    transform: scale(1.1);
+}
+
+.carouselWrapper {
+    flex: 1;
+    overflow: hidden;
+}
+
+.carouselDots {
+    display: none;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #cbd5e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.activeDot {
+    background: var(--accent-primary);
+    width: 30px;
+    border-radius: 5px;
+}
+
 /* Partner Section */
 .partnerSection {
     background: var(--accent-primary);
     color: white;
+    padding: 4rem 0;
 }
 
 .partnerGrid {
@@ -225,9 +283,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--accent-primary);
-    font-weight: bold;
-    font-size: 1.5rem;
+    padding: 2rem;
+}
+
+.guarnitexLogo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 /* Budget Section */
@@ -283,4 +345,115 @@
     border-radius: var(--radius-sm);
     font-weight: bold;
     text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.submitBtn:hover {
+    background: var(--accent-primary);
+}
+
+/* ========== RESPONSIVIDADE - MOBILE ========== */
+@media (max-width: 768px) {
+    .homeContainer {
+        padding-top: 70px;
+    }
+
+    /* Hero Mobile */
+    .heroGrid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .btnPrimary,
+    .btnSecondary {
+        width: 100%;
+        text-align: center;
+    }
+
+    .heroStats {
+        gap: 1rem;
+    }
+
+    .statCard {
+        padding: 1.5rem;
+    }
+
+    .statCard h3 {
+        font-size: 2rem;
+    }
+
+    /* Categories Mobile - CARROSSEL */
+    .categoryGrid {
+        display: none;
+    }
+
+    .carouselContainer {
+        display: flex;
+    }
+
+    .carouselDots {
+        display: flex;
+    }
+
+    /* Partner Mobile - LOGO MAIOR */
+    .partnerGrid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .partnerInfo h2 {
+        font-size: 2rem;
+    }
+
+    .partnerImageStub {
+        height: 250px;
+    }
+
+    .guarnitexLogo {
+        width: 80%;
+        height: auto;
+    }
+
+    /* Budget/Formulário Mobile - AJUSTE COMPLETO */
+    .budgetBox {
+        grid-template-columns: 1fr;
+    }
+
+    .budgetInfo {
+        padding: 2rem;
+    }
+
+    .budgetForm {
+        padding: 2rem;
+    }
+
+    .input,
+    .select {
+        font-size: 16px; /* Evita zoom no iOS */
+    }
+}
+
+/* TABLET */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .categoryGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
 }

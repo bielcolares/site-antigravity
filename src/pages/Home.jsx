@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
@@ -6,6 +6,25 @@ import styles from './Home.module.css';
 import guarnitexLogo from '../assets/images/guarnitex-logo.png';
 
 const Home = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    
+    const products = [
+        'Bicos Automáticos',
+        'Papel Linter',
+        'Papelão Filtrante',
+        'Réguas de Medição',
+        'Bombas de Drenagem',
+        'Valvulas Breakaway'
+    ];
+
+    const nextProduct = () => {
+        setCurrentIndex((prev) => (prev + 1) % products.length);
+    };
+
+    const prevProduct = () => {
+        setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
+    };
+
     return (
         <div className={styles.homeContainer}>
             {/* Hero Section */}
@@ -65,15 +84,17 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Product Categories Preview */}
+            {/* Product Categories Preview - COM CARROSSEL */}
             <section className={styles.categoriesSection}>
                 <div className="container">
                     <div className={styles.sectionHeader}>
                         <h2>Nossa Linha</h2>
                         <Link to="/produtos" className={styles.linkArrow}>Ver catálogo completo →</Link>
                     </div>
+                    
+                    {/* Desktop: Grid normal */}
                     <div className={styles.categoryGrid}>
-                        {['Bicos Automáticos', 'Papel Linter', 'Papelão Filtrante', 'Réguas de Medição', 'Bombas de Drenagem', 'Valvulas Breakaway'].map((item, index) => (
+                        {products.map((item, index) => (
                             <motion.div
                                 key={index}
                                 className={styles.categoryCard}
@@ -82,6 +103,40 @@ const Home = () => {
                                 <div className={styles.catIconStub}></div>
                                 <h4>{item}</h4>
                             </motion.div>
+                        ))}
+                    </div>
+
+                    {/* Mobile: Carrossel com setas */}
+                    <div className={styles.carouselContainer}>
+                        <button className={styles.carouselBtn} onClick={prevProduct}>
+                            ‹
+                        </button>
+                        <div className={styles.carouselWrapper}>
+                            <motion.div
+                                className={styles.categoryCard}
+                                key={currentIndex}
+                                initial={{ opacity: 0, x: 100 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -100 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <div className={styles.catIconStub}></div>
+                                <h4>{products[currentIndex]}</h4>
+                            </motion.div>
+                        </div>
+                        <button className={styles.carouselBtn} onClick={nextProduct}>
+                            ›
+                        </button>
+                    </div>
+                    
+                    {/* Indicadores de posição */}
+                    <div className={styles.carouselDots}>
+                        {products.map((_, index) => (
+                            <span
+                                key={index}
+                                className={`${styles.dot} ${index === currentIndex ? styles.activeDot : ''}`}
+                                onClick={() => setCurrentIndex(index)}
+                            />
                         ))}
                     </div>
                 </div>
@@ -108,11 +163,11 @@ const Home = () => {
                             </div>
                         </div>
                         <div className={styles.partnerVisual}>
-                            <div className={styles.partnerImageStub} style={{ background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <div className={styles.partnerImageStub}>
                                 <img
                                     src={guarnitexLogo}
                                     alt="Guarnitex Papéis Especiais"
-                                    style={{ maxWidth: '80%', maxHeight: '80%' }}
+                                    className={styles.guarnitexLogo}
                                 />
                             </div>
                         </div>
@@ -142,7 +197,7 @@ const Home = () => {
                                 <option>Papéis Especiais</option>
                                 <option>Outros</option>
                             </select>
-                            <button className={styles.submitBtn}>Enviar Solicitação</button>
+                            <button type="button" className={styles.submitBtn}>Enviar Solicitação</button>
                         </form>
                     </div>
                 </div>
