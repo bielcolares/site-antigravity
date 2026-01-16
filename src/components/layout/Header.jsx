@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
-
 import logo from '../../assets/images/logo.png';
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
     const location = useLocation();
 
     useEffect(() => {
@@ -16,6 +16,14 @@ const Header = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
+    const closeMenu = () => {
+        setMenuOpen(false);
+    };
 
     const navItems = [
         { label: 'Início', path: '/' },
@@ -32,12 +40,23 @@ const Header = () => {
                     <img src={logo} alt="TRN Papéis" style={{ height: '60px' }} />
                 </Link>
 
-                <nav className={styles.nav}>
+                <button 
+                    className={`${styles.hamburger} ${menuOpen ? styles.open : ''}`}
+                    onClick={toggleMenu}
+                    aria-label="Menu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <nav className={`${styles.nav} ${menuOpen ? styles.menuOpen : ''}`}>
                     {navItems.map((item) => (
                         <Link
                             key={item.path}
                             to={item.path}
                             className={`${styles.navLink} ${location.pathname === item.path ? styles.active : ''}`}
+                            onClick={closeMenu}
                         >
                             {item.label}
                         </Link>
