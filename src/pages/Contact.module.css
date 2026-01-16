@@ -1,0 +1,119 @@
+.contactContainer {
+    min-height: 100vh;
+    padding-top: 100px;
+    padding-bottom: 4rem;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.intro h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.intro p {
+    color: var(--text-secondary);
+}
+
+.contentGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.infoSection h3 {
+    color: var(--accent-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.infoItem {
+    margin-bottom: 2rem;
+}
+
+.infoItem h4 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.infoItem p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.formSection {
+    background: white;
+    padding: 2.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid #e2e8f0;
+    box-shadow: var(--shadow-md);
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.input,
+.textarea {
+    width: 100%;
+    background: #f8f9fa;
+    border: 1px solid #cbd5e0;
+    padding: 0.8rem;
+    color: var(--text-primary);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.input:focus,
+.textarea:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    background: white;
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.submitBtn {
+    width: 100%;
+    background: var(--accent-primary);
+    color: white;
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+}
+
+.submitBtn:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 768px) {
+    .contentGrid {
+        grid-template-columns: 1fr;
+    }
+}
